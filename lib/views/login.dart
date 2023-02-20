@@ -74,7 +74,7 @@ class _BodyLoginState extends State<BodyLogin> {
                         setState(() {
                           obscure = !obscure;
                         });
-                      }, 
+                      },
                   icon: const Icon(Icons.remove_red_eye)
                   )
               ),
