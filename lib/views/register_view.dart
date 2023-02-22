@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 
-class Register extends StatelessWidget {
-  const Register({Key? key}) : super(key: key);
+class RegisterView extends StatelessWidget {
+  const RegisterView({super.key});
 
   @override
   Widget build(BuildContext context) {
