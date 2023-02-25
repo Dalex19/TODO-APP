@@ -4,16 +4,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mi_primera_aplicacion/models/menu_options.dart';
 import 'package:mi_primera_aplicacion/views/home_view.dart';
-import 'package:mi_primera_aplicacion/views/login_view.dart';
-import 'package:mi_primera_aplicacion/views/register_view.dart';
+import 'package:mi_primera_aplicacion/views/log_in_view.dart';
+import 'package:mi_primera_aplicacion/views/sign_up_view.dart';
 
 class AppRoutes {
 
-  static const initialRoute = 'login';
+  static const initialRoute = 'initial-route';
 
   static final menuOptions = <MenuOption> [
-    MenuOption(route: 'login', name: 'login', screen: const LoginView()),
-    MenuOption(route: 'register', name: 'register', screen: const RegisterView())
+    MenuOption(route: 'initial-route', name: 'initial', screen: HomeView()),
+    MenuOption(route: 'sign-up', name: 'signup', screen: const SignUpView()),
+    MenuOption(route: 'log-in', name: 'login', screen: const LogInView())
   ];
 
   static Map<String, Widget Function(BuildContext)> getAppRoutes () {
