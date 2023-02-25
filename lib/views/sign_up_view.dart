@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mi_primera_aplicacion/widgets/btn.dart';
 
-class LoginView extends StatelessWidget {
-  const LoginView({super.key});
+class SignUpView extends StatelessWidget {
+  const SignUpView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,33 +11,43 @@ class LoginView extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: bgColor,
-      body: Column(
-        children: [
-          Container(
-            width: double.infinity,
-            height: MediaQuery.of(context).size.height * 0.20,
-            child: Stack(
-              children: [
-                Positioned(
-                    right: 0,
-                    top: 0,
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * 0.25,
-                      width: MediaQuery.of(context).size.width * 0.75,
-                      decoration: const BoxDecoration(
-                        //color: Colors.red,
-                          image: DecorationImage(
-                              image: AssetImage('assets/treebranch.png'),
-                              fit: BoxFit.cover,
-                              alignment: Alignment.topCenter
-                          )
-                      ),
+      body: WillPopScope(
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height * 0.20,
+              child: Stack(
+                children: [
+                  Positioned(
+                      right: 0,
+                      top: 0,
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * 0.25,
+                        width: MediaQuery.of(context).size.width * 0.75,
+                        decoration: const BoxDecoration(
+                          //color: Colors.red,
+                            image: DecorationImage(
+                                image: AssetImage('assets/treebranch.png'),
+                                fit: BoxFit.cover,
+                                alignment: Alignment.topCenter
+                            )
+                        ),
+                      )
+                  ),
+                  Positioned(
+                    top: 20,
+                    left: 10,
+                    child: IconButton(
+                    color: Colors.black,
+                    icon: const Icon(Icons.arrow_back),
+                    onPressed: () => Navigator.pushReplacementNamed(context, 'initial-route'),
                     )
-                )
-              ],
+                  )
+                ],
+              ),
             ),
-          ),
-           Padding(
+            Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -45,7 +55,6 @@ class LoginView extends StatelessWidget {
                   Container(
                     height: MediaQuery.of(context).size.height * 0.60,
                     width: double.infinity,
-                    //color: Colors.deepPurple,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -61,7 +70,12 @@ class LoginView extends StatelessWidget {
             )
 
 
-        ],
+          ],
+        ),
+        onWillPop: () async {
+          Navigator.pushReplacementNamed(context, 'initial-route');
+          return true;
+        },
       ),
 
     );
@@ -73,7 +87,6 @@ class HeaderLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.10,
-      //color: Colors.orange,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: const [
@@ -107,36 +120,36 @@ class _BodyLoginState extends State<BodyLogin> {
   @override
   Widget build(BuildContext context) {
       return Container(
-        height: MediaQuery.of(context).size.height * 0.450,
+        height: MediaQuery.of(context).size.height * 0.45,
         //color: Colors.blue,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             TextFormField(
-              maxLength: 10,
+              keyboardType: TextInputType.text,
               decoration: const InputDecoration(
                   hintText: '',
-                  label: Text('First Name', style: TextStyle(color: Colors.black),),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.lightGreen )
-                  ),
-              //focusColor: Colors.lightGreen,
+                  label: Text('First Name', style: TextStyle(color: Colors.black)),
               ),
             ),
             TextFormField(
-              maxLength: 10,
+              keyboardType: TextInputType.text,
               decoration: const InputDecoration(
                   hintText: '',
                   label: Text('Last Name'),
               ),
             ),
             TextFormField(
+              maxLength: 15,
+              keyboardType: TextInputType.emailAddress,
               decoration: const InputDecoration(
                   hintText: '',
                   label: Text('Email')
               ),
             ),
             TextFormField(
+              maxLength: 10,
+              obscureText: true,
               decoration: const InputDecoration(
                   hintText: '',
                   label: Text('Password')
@@ -173,7 +186,7 @@ class Footer extends StatelessWidget {
                     ),
                      textAlign: TextAlign.left,
                      ),
-                onPressed: () {},
+                onPressed: () => Navigator.pushReplacementNamed(context, 'log-in'),
                 )
               )
             ],
