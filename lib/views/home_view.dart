@@ -132,25 +132,3 @@ class Btns extends StatelessWidget {
   }
 
 }
-
-// OutlinedButton(
-// onPressed: () => Navigator.pushReplacementNamed(context, 'login'),
-// style: OutlinedButton.styleFrom(
-// backgroundColor: Colors.transparent,
-// side: const BorderSide(color: Colors.black, width: 2),
-// shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-// padding:  const EdgeInsets.symmetric(vertical: 13, horizontal: 95),
-// ),
-// child: const Text('Log in', style: TextStyle(color: Colors.black)),
-// ),
-// OutlinedButton(
-// onPressed: () {},
-// style: OutlinedButton.styleFrom(
-// backgroundColor: Colors.orange,
-// side:const BorderSide(color: Colors.black, width: 2),
-// shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-// padding: const EdgeInsets.fromLTRB(95, 10, 95, 15),
-//
-// ),
-// child:  const Text('Sign up', style: TextStyle(color: Colors.black)),
-// ),

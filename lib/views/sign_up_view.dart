@@ -3,7 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:mi_primera_aplicacion/widgets/btn.dart';
 
 class SignUpView extends StatelessWidget {
-  const SignUpView({super.key});
+  //const SignUpView({super.key});
+  final formKey = GlobalKey<FormState>();
+  final firstNameCtrl = TextEditingController();
+  final lastNameCtrl = TextEditingController();
+  final emailCtrl = TextEditingController();
+  final passwordCtrl = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -59,11 +65,17 @@ class SignUpView extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         HeaderLogin(),
-                        BodyLogin(),
+                        BodyLogin(
+                            formKey: formKey,
+                            firstNameCtrl: firstNameCtrl,
+                            lastNameCtrl: lastNameCtrl,
+                            emailCtrl: emailCtrl,
+                            passwordCtrl: passwordCtrl
+                        )
                       ],
                     ),
                   ),
-                  Footer()
+                  Footer(formKey)
 
                 ],
               ),
@@ -111,57 +123,90 @@ class HeaderLogin extends StatelessWidget {
 }
 
 class BodyLogin extends StatefulWidget {
+  GlobalKey formKey = GlobalKey<FormState>();
+  TextEditingController firstNameCtrl = TextEditingController();
+  TextEditingController lastNameCtrl = TextEditingController();
+  TextEditingController emailCtrl = TextEditingController();
+  TextEditingController passwordCtrl = TextEditingController();
+
+  BodyLogin({
+    required this.formKey, required this.firstNameCtrl,
+    required this.lastNameCtrl, required this.emailCtrl, required this.passwordCtrl
+  });
+
   @override
   State<BodyLogin> createState() => _BodyLoginState();
 }
 
 class _BodyLoginState extends State<BodyLogin> {
+
   bool obscure = true;
   @override
   Widget build(BuildContext context) {
       return Container(
         height: MediaQuery.of(context).size.height * 0.45,
-        //color: Colors.blue,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            TextFormField(
-              keyboardType: TextInputType.text,
-              decoration: const InputDecoration(
+        child: Form(
+          key: widget.formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              TextFormField(
+                key: Key('firstNameField'),
+                controller: widget.firstNameCtrl,
+                keyboardType: TextInputType.text,
+                decoration: const InputDecoration(
                   hintText: '',
                   label: Text('First Name', style: TextStyle(color: Colors.black)),
+                ),
               ),
-            ),
-            TextFormField(
-              keyboardType: TextInputType.text,
-              decoration: const InputDecoration(
+              TextFormField(
+                key: Key('lastNameField'),
+                controller: widget.lastNameCtrl,
+                keyboardType: TextInputType.text,
+                decoration: const InputDecoration(
                   hintText: '',
                   label: Text('Last Name'),
+                ),
               ),
-            ),
-            TextFormField(
-              maxLength: 15,
-              keyboardType: TextInputType.emailAddress,
-              decoration: const InputDecoration(
-                  hintText: '',
-                  label: Text('Email')
+              TextFormField(
+                key: Key('emailField'),
+                controller: widget.emailCtrl,
+                maxLength: 15,
+                keyboardType: TextInputType.emailAddress,
+                decoration: const InputDecoration(
+                    hintText: '',
+                    label: Text('Email')
+                ),
               ),
-            ),
-            TextFormField(
-              maxLength: 10,
-              obscureText: true,
-              decoration: const InputDecoration(
-                  hintText: '',
-                  label: Text('Password')
-              ),
-            )
-          ],
-        ),
+              TextFormField(
+                key: const Key('passwordField'),
+                controller: widget.passwordCtrl,
+                maxLength: 10,
+                obscureText: obscure,
+                decoration: InputDecoration(
+                    hintText: '',
+                    label: Text('Password'),
+                    suffixIcon: IconButton(
+                        icon: Icon(Icons.visibility_rounded),
+                        onPressed: () {
+                          obscure = !obscure;
+                          setState(() {});
+                        },
+
+                    ),
+                ),
+              )
+            ],
+          ),
+        )
       );
   }
 }
 
 class Footer extends StatelessWidget {
+  GlobalKey formKey = GlobalKey<FormState>();
+  Footer(this.formKey);
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -172,7 +217,7 @@ class Footer extends StatelessWidget {
           Btn(nameBtn: 'Sign Up',
               paddingBtn: const EdgeInsets.fromLTRB(95, 10, 95, 15),
               colorBtn: Colors.lightGreen,
-              action: (){}
+              action: () => Navigator.pushReplacementNamed(context, 'app')
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,

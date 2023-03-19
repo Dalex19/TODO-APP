@@ -28,8 +28,7 @@ class LogInView extends StatelessWidget {
                         height: MediaQuery.of(context).size.height * 0.25,
                         width: MediaQuery.of(context).size.width * 0.75,
                         decoration: const BoxDecoration(
-                          //color: Colors.red,
-                            image: DecorationImage(
+                          image: DecorationImage(
                                 image: AssetImage('assets/treebranch.png'),
                                 fit: BoxFit.cover,
                                 alignment: Alignment.topCenter
@@ -157,7 +156,7 @@ class Footer extends StatelessWidget {
           Btn(nameBtn: 'Log in',
               paddingBtn: const EdgeInsets.fromLTRB(95, 10, 95, 15),
               colorBtn: Colors.lightGreen,
-              action: (){}
+              action: () => Navigator.pushReplacementNamed(context, 'app')
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
